@@ -1,7 +1,7 @@
 // @ts-check
 /* jshint esversion: 6 */
 
-import { Client, Account } from './appwrite.16.1.0-sdk.mjs';
+import { Client, Account } from '../lib/appwrite.16.1.0-sdk.mjs';
 
 const APPWRITE_PROJECT_ID = "6442cef9badf08d71295";
 const APPWRITE_API_ENDPOINT = "https://cloud.appwrite.io/v1";

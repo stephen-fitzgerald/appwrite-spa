@@ -1,7 +1,7 @@
 // @ts-check
 /* jshint esversion: 6 */
 
-import { AbstractView } from "../js/abstract-view.mjs";
+import { AbstractView } from "./_AbstractView.mjs";
 
 export class Cube3dView extends AbstractView {
   constructor(args = {}) {

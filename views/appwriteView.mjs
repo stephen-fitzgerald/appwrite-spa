@@ -1,7 +1,7 @@
 // @ts-check
 /* jshint esversion: 6 */
 
-import { AbstractView } from "../js/abstract-view.mjs";
+import { AbstractView } from "./_AbstractView.mjs";
 import { getLoggedInUser, loginWithEmailAndPassword, logOut } from "../js/appwrite.mjs";
 
 const EMAIL = "practicalcomposites@gmail.com";
@@ -66,9 +66,12 @@ export class AppwriteView extends AbstractView {
   }
 
   /**
+   * Do any cleanup required when this 'page' is replaced by another
    * @override
    */
-  destroy() { }
+  destroy() { 
+    
+  }
 
   async login() {
     let user = await loginWithEmailAndPassword(EMAIL, PASSWORD);

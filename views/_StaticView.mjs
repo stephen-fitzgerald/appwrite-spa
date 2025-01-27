@@ -1,7 +1,6 @@
 //@ts-check
 
-import { AbstractView } from "./abstract-view.mjs";
-import { cleanHTML } from "./clean-html.mjs";
+import { AbstractView, cleanHTML } from "./_AbstractView.mjs";
 
 export class StaticView extends AbstractView {
   constructor(args) {

@@ -6,7 +6,7 @@
  */
 
 import { getRoutes } from './routes.mjs';
-//import { cleanHTML } from './clean-html.mjs';
+import { cleanHTML } from '../views/_AbstractView.mjs';
 
 function parseRequestURL() {
     let url = location.hash.slice(1).toLowerCase() || '/';
@@ -19,6 +19,10 @@ function parseRequestURL() {
     return request;
 };
 
+const config = {
+    sanitizeHTML: false,
+}
+
 let currentPage;
 
 export async function router() {
@@ -26,10 +30,10 @@ export async function router() {
     let routes = getRoutes();
 
     // Get the parsed URl from the addressbar
-    let request = parseRequestURL();
+    let req = parseRequestURL();
 
     // Parse the URL and if it has an id part, change it with the string ":id"
-    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '');
+    let parsedURL = (req.resource ? '/' + req.resource : '/') + (req.id ? '/:id' : '') + (req.verb ? '/' + req.verb : '');
 
     // Get the page from our hash of supported routes, or the 404 page 
     let page = routes[parsedURL] ? routes[parsedURL] : routes["Error404"];
@@ -37,8 +41,10 @@ export async function router() {
     // console.log(JSON.stringify(request));
 
     // render the html for the page
-    let html = await page.buildHTML(request);
-    //html = cleanHTML(html);
+    let html = await page.buildHTML(req);
+    if( config.sanitizeHTML ){
+        html = cleanHTML(html, false);
+    }
 
     if (currentPage) { currentPage.destroy(); }
     // set the main container elements html
