@@ -1,0 +1,225 @@
+:root {
+  --body-bg-clr: rgb(181, 255, 230);
+  --text-clr: rgb(32, 39, 12);
+
+  --header-bg-clr: rgb(99, 99, 247);
+  --header-hilite-clr: rgb(144, 144, 252);
+
+  --main-bg-clr: antiquewhite;
+
+  --table-clr: rgb(253, 226, 191);
+  --table-hilite-clr: rgb(252, 214, 165);
+  --table-hdr-clr: rgb(250, 170, 66);
+
+  --nav-bg-clr: aquamarine;
+  --nav-hilite-clr: rgb(181, 255, 230);
+
+  --aside-bg-clr: rgb(174, 247, 255);
+
+  --footer-bg-clr: coral;
+  --dflt-border-radius: 6px;
+}
+
+* {
+  color: var(--text-clr);
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Regular;
+
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav content"
+    "footer footer";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 5px;
+  height: 100vh;
+  padding: 5px;
+  background-color: var(--body-bg-clr);
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 75%;
+    display: grid;
+    grid-template-areas:
+      "header"
+      "nav"
+      "content"
+      "footer";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
+}
+
+header {
+  grid-area: header;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--header-bg-clr);
+  border-radius: var(--dflt-border-radius);
+}
+
+nav {
+  grid-area: nav;
+  background-color: var(--nav-bg-clr);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: var(--dflt-border-radius);
+}
+
+nav a {
+  padding: 0.25em 0.75em 0.25em 0.75em;
+  border-radius: var(--dflt-border-radius);
+  text-decoration: none;
+  margin: 3px;
+}
+
+nav a:hover {
+  background-color: var(--nav-hilite-clr);
+}
+
+nav a.active {
+  background-color: var(--nav-hilite-clr);
+}
+
+footer {
+  grid-area: footer;
+  background-color: var(--footer-bg-clr);
+  padding: 1rem;
+  border-radius: var(--dflt-border-radius);
+}
+
+main {
+  /* padding: 0.75rem; */
+  grid-area: content;
+  background-color: var(--main-bg-clr);
+  overflow: hidden;
+  overflow: auto;
+  /* scroll bars, if needed, by default */
+  border-radius: var(--dflt-border-radius);
+  padding: var(--dflt-border-radius);
+}
+
+.menu-icon {
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+header .menu-icon:hover {
+  background-color: var(--header-hilite-clr);
+}
+
+/* Hamburger menu item in header hides/shows nav */
+#hamburger-icon:before,
+#hamburger-icon:after,
+#hamburger-icon div {
+  width: 1.75rem;
+  background: var(--text-clr);
+  content: "";
+  display: block;
+  height: 5px;
+  border-radius: 2px;
+  margin: 3px 0;
+  transition: 0.5s;
+}
+
+/*  input styling for forms */
+
+input:enabled {
+  filter: brightness(110%) saturate(110%);
+}
+
+input:hover:enabled {
+  filter: brightness(130%) saturate(120%);
+}
+
+input {
+  border-style: none;
+  margin: 4pt 0pt 4pt 0pt;
+}
+
+input.num {
+  width: 9em;
+  text-align: right;
+}
+
+button {
+  text-align: center;
+  min-width: 7em;
+}
+
+button:hover,
+select:hover {
+  filter: brightness(110%) saturate(110%);
+}
+
+.no-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+table {
+  background-color: var(--table-clr);
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+table thead {
+  background-color: var(--table-hdr-clr);
+}
+
+tbody tr:hover {
+  background-color: var(--table-hilite-clr);
+  /* filter: brightness(50%) saturate(150%); */
+}
+
+/* prevents text selection */
+.prevent-select {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+
+/* The only canvas right now is in Cube 3D page */
+canvas {
+  background-color: blue;
+  background-color: transparent;
+}
+
+.lil-gui .title {
+  color: #2cc9ff;
+}
+
+.lil-gui .name {
+  color: #2cc9ff;
+}
+
+.flex-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

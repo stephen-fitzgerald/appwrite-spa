@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!--base href="/"-->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- reset css must come first -->
+  <link rel="stylesheet" href="index.css" />
+
+  <link rel="manifest" href="manifest.json" />
+
+  <title>Stratus LPT</title>
+  <meta name="description" content="Composite material calculations" />
+  <meta name="author" content="S.Fitzgerald" />
+
+  <link rel="icon" type="image/svg" href="assets/my-icon.png" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="header" tabindex="-1">
+    <!-- #menu-icon controls visibility of #left-nav-->
+    <div id="hamburger-icon" class="menu-icon">
+      <!-- hamburger menu in .css -->
+      <div></div>
+      <div></div>
+    </div>
+
+    <h1>Stratus LPT</h1>
+    <div id="login-icon" class="menu-icon">Login</div>
+  </header>
+  <!-- end of Header -->
+
+  <!-- Nav -->
+  <nav id="left-nav">
+    <a href="#/">Home</a>
+    <a href="#/about">About</a>
+    <a href="#/cube">3D Cube</a>
+    <a href="#/appwrite">Appwrite</a>
+  </nav>
+  <!-- end of Nav -->
+
+  <!-- Main -->
+  <main id="main-container" style="display:flex; flex-direction: column;"></main>
+  <!-- end of Main -->
+
+  <!-- Footer -->
+  <footer id="footer" tabindex="-1">
+    (c) 1992-2025
+    <a href="mailto:help@gmail.com" target="_blank" tabindex="-1">Stephen Fitzgerald</a>.
+  </footer>
+  <!-- end of Footer -->
+
+  <script type="module" src="./index.js"></script>
+</body>
+
+</html>

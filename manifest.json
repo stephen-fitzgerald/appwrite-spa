@@ -1,0 +1,15 @@
+{
+    "short_name": "Stratus LPT",
+    "name": "Stratus Laminate Plate Theory",
+    "icons": [
+      {
+        "src": "assets/my-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#3367D6",
+    "theme_color": "#3367D6"
+  }
