@@ -1,46 +1,32 @@
 // @ts-check
 /* jshint esversion: 6 */
 
+import { Client, Account } from './appwrite.16.1.0-sdk.mjs';
 
 const APPWRITE_PROJECT_ID = "6442cef9badf08d71295";
 const APPWRITE_API_ENDPOINT = "https://cloud.appwrite.io/v1";
 
-let _Appwrite = undefined;
-let _client = undefined;
-let _account = undefined;
-
-export async function getAppwrite() {
-    if (_Appwrite == undefined) {
-        // Support access via `import` 
-        const script = await fetch('./js/sdk.js');
-        const scriptText = await script.text();
-        _Appwrite = Function(`${scriptText}; return Appwrite;`)();
-        // Support Appwrite access via global object 
-        Object.defineProperty(window, 'Appwrite', { value: _Appwrite });
-        console.log(_Appwrite);
-    }
-    return _Appwrite;
-}
+// cache these for future use
+let _client;
+let _account;
 
 export async function getClient() {
     if (_client == undefined) {
         // only one instance of Client should be created per app
-        const Appwrite = await getAppwrite();
-        _client = new Appwrite.Client();
+        _client = new Client();
         _client
             .setEndpoint(APPWRITE_API_ENDPOINT)
             .setProject(APPWRITE_PROJECT_ID);
-        console.log(_client);
+        // console.log(_client);
     }
     return _client;
 }
 
 export async function getAccount() {
     if (_account == undefined) {
-        _Appwrite = await getAppwrite();
         _client = await getClient();
-        _account = new _Appwrite.Account(_client);
-        console.log(_account);
+        _account = new Account(_client);
+        // console.log(_account);
     }
     return _account;
 }
@@ -82,7 +68,6 @@ export async function logOut() {
     let ret = false;
     let account;
     try {
-        //await account.get();
         account = await getAccount();
         let dummy = await account.deleteSession('current');
         ret = true;
