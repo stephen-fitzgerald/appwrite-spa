@@ -1,9 +1,9 @@
 // @ts-check
 /*jshint esversion: 6 */
 
-import { AppwriteView } from "../views/appwrite-view.mjs";
-import { Cube3dView } from "../views/cube3d-view.mjs";
-import { StaticView } from "./static-view.mjs";
+import { AppwriteView } from "../views/appwriteView.mjs";
+import { Cube3dView } from "../views/cube3dView.mjs";
+import { StaticView } from "../views/_StaticView.mjs";
 
 // these routes never get re-initialized
 const staticRoutes = {

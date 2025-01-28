@@ -1,6 +1,6 @@
 {
-    "short_name": "Stratus LPT",
-    "name": "Stratus Laminate Plate Theory",
+    "short_name": "Appwrite SPA",
+    "name": "Single-page application demo of Appwrite using vamilla Javascript",
     "icons": [
       {
         "src": "assets/my-icon.png",

@@ -1,6 +1,8 @@
 // @ts-check
 /* jshint esversion: 6 */
 
+/** @typedef {Object} User any */
+
 import { Client, Account } from '../lib/appwrite.16.1.0-sdk.mjs';
 
 const APPWRITE_PROJECT_ID = "6442cef9badf08d71295";
@@ -32,7 +34,7 @@ export async function getAccount() {
 }
 
 /**
- * Log in with email and password, if required.
+ * Log in with email and password, if not already logged in.
  * @export
  * @async
  * @param {string} email 
@@ -78,6 +80,14 @@ export async function logOut() {
     return ret;
 }
 
+
+/**
+ * Description placeholder
+ *
+ * @export
+ * @async
+ * @returns {Promise<User>} User 
+ */
 export async function getLoggedInUser() {
     const account = await getAccount();
     let user;

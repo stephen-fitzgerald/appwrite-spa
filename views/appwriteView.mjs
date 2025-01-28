@@ -12,8 +12,7 @@ export class AppwriteView extends AbstractView {
   constructor(args = {}) {
     super(args);
     this.html = '';
-    this.path = "./views/appwrite.html";
-
+    this.path = "./views/appwriteView.html";
   }
 
   /**
@@ -69,8 +68,8 @@ export class AppwriteView extends AbstractView {
    * Do any cleanup required when this 'page' is replaced by another
    * @override
    */
-  destroy() { 
-    
+  destroy() {
+
   }
 
   async login() {
@@ -79,6 +78,21 @@ export class AppwriteView extends AbstractView {
   }
 
   async logout() {
+    let targetObj = {color: "blue"};
+
+    this.proxyObject = new Proxy(targetObj, {
+      get: function (object, name) {
+        if (name == '__proxy__') {
+          return true;
+        }
+        return object[name];
+      },
+      // @ts-ignore
+      set: function (object, name, value) {
+        var old = object[name];
+        object[name] = value;
+      }
+    });
     await logOut();
     await this.modelToView(0);
   }
