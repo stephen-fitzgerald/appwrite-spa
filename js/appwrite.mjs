@@ -1,9 +1,34 @@
 // @ts-check
 /* jshint esversion: 6 */
 
-/** @typedef {Object} User any */
+/** @typedef {{
+    $id: string,
+    $createdAt: string,
+    $updatedAt: string,
+    name: string,
+    password: string,
+    hash: string,
+    hashOptions: object,
+    registration: string,
+    status: boolean,
+    labels: [],
+    passwordUpdate: string,
+    email: string,
+    phone: string,
+    emailVerification: boolean,
+    phoneVerification: boolean,
+    mfa: boolean,
+    prefs: object,
+    targets: [],
+    accessedAt: string
+}} User */
 
-import { Client, Account } from '../lib/appwrite.16.1.0-sdk.mjs';
+import {
+    Account, AppwriteException, AuthenticationFactor, AuthenticatorType, Avatars, Browser,
+    Client, CreditCard, Databases, ExecutionMethod, Flag, Functions, Graphql,
+    ID, ImageFormat, ImageGravity, Locale, Messaging, OAuthProvider,
+    Permission, Query, Role, Storage, Teams
+} from '../lib/appwrite.16.1.0-sdk.mjs';
 
 const APPWRITE_PROJECT_ID = "6442cef9badf08d71295";
 const APPWRITE_API_ENDPOINT = "https://cloud.appwrite.io/v1";
@@ -39,7 +64,7 @@ export async function getAccount() {
  * @async
  * @param {string} email 
  * @param {string} pwd 
- * @returns {Promise<any>} User - the currently logged in user.
+ * @returns {Promise<User>} User - the currently logged in user.
  */
 export async function loginWithEmailAndPassword(email, pwd) {
     let user;

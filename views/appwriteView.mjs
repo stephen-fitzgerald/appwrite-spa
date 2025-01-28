@@ -2,7 +2,7 @@
 /* jshint esversion: 6 */
 
 import { AbstractView } from "./_AbstractView.mjs";
-import { getLoggedInUser, loginWithEmailAndPassword, logOut } from "../js/appwrite.mjs";
+import * as Appwrite from "../js/appwrite.mjs";
 
 const EMAIL = "practicalcomposites@gmail.com";
 const PASSWORD = "hubbards4328~";
@@ -59,7 +59,7 @@ export class AppwriteView extends AbstractView {
    */
   async modelToView(time) {
     let lblStatus = document.getElementById('lbl-status');
-    const user = await getLoggedInUser();
+    const user = await Appwrite.getLoggedInUser();
     let statusStr = user ? user.name + " is Logged in" : "No one is logged in.";
     if (lblStatus) lblStatus.textContent = statusStr;
   }
@@ -73,7 +73,7 @@ export class AppwriteView extends AbstractView {
   }
 
   async login() {
-    let user = await loginWithEmailAndPassword(EMAIL, PASSWORD);
+    let user = await Appwrite.loginWithEmailAndPassword(EMAIL, PASSWORD);
     await this.modelToView(0);
   }
 
@@ -93,7 +93,7 @@ export class AppwriteView extends AbstractView {
         object[name] = value;
       }
     });
-    await logOut();
+    await Appwrite.logOut();
     await this.modelToView(0);
   }
 
