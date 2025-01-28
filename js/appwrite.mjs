@@ -1,6 +1,11 @@
 // @ts-check
 /* jshint esversion: 6 */
 
+/*  
+    typedefs for types used, but not defined, in the Appwrite web API
+    These help with autocorrect & jsdoc comments    
+*/
+
 /** @typedef {{
     $id: string,
     $createdAt: string,
@@ -11,7 +16,7 @@
     hashOptions: object,
     registration: string,
     status: boolean,
-    labels: [],
+    labels: array,
     passwordUpdate: string,
     email: string,
     phone: string,
@@ -19,7 +24,7 @@
     phoneVerification: boolean,
     mfa: boolean,
     prefs: object,
-    targets: [],
+    targets: array,
     accessedAt: string
 }} User */
 
