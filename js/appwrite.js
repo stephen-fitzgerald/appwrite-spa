@@ -16,7 +16,7 @@
     hashOptions: object,
     registration: string,
     status: boolean,
-    labels: array,
+    labels: Array<any>,
     passwordUpdate: string,
     email: string,
     phone: string,
@@ -24,7 +24,7 @@
     phoneVerification: boolean,
     mfa: boolean,
     prefs: object,
-    targets: array,
+    targets: Array<any>,
     accessedAt: string
 }} User */
 
@@ -33,13 +33,19 @@ import {
     Client, CreditCard, Databases, ExecutionMethod, Flag, Functions, Graphql,
     ID, ImageFormat, ImageGravity, Locale, Messaging, OAuthProvider,
     Permission, Query, Role, Storage, Teams
-} from '../lib/appwrite.16.1.0-sdk.mjs';
+} from '../lib/appwrite.16.1.0-sdk.js';
 
 const APPWRITE_PROJECT_ID = "6442cef9badf08d71295";
 const APPWRITE_API_ENDPOINT = "https://cloud.appwrite.io/v1";
 
 // cache these for future use
+/**
+ * @type {Client | undefined}
+ */
 let _client;
+/**
+ * @type {Account | undefined}
+ */
 let _account;
 
 export async function getClient() {

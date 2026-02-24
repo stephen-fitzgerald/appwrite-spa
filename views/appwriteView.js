@@ -1,8 +1,8 @@
 // @ts-check
 /* jshint esversion: 6 */
 
-import { AbstractView } from "./_AbstractView.mjs";
-import { getLoggedInUser, loginWithEmailAndPassword, logOut } from "../js/appwrite.mjs";
+import { AbstractView } from "./_AbstractView.js";
+import { getLoggedInUser, loginWithEmailAndPassword, logOut } from "../js/appwrite.js";
 
 //const EMAIL = "practicalcomposites@gmail.com";
 //const PASSWORD = "hubbards4328~";

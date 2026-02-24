@@ -1,8 +1,11 @@
 //@ts-check
 
-import { AbstractView, cleanHTML } from "./_AbstractView.mjs";
+import { AbstractView, cleanHTML } from "./_AbstractView.js";
 
 export class StaticView extends AbstractView {
+  /**
+   * @param {{ title?: string | undefined; html?: string | undefined; path?: string | undefined; } | undefined} args
+   */
   constructor(args) {
     super(args);
     this.html = undefined;

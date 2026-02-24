@@ -1,13 +1,16 @@
 // @ts-check
 /* jshint esversion: 6 */
 
-import { AbstractView } from "./_AbstractView.mjs";
+import { AbstractView } from "./_AbstractView.js";
 
 export class Cube3dView extends AbstractView {
   constructor(args = {}) {
     super(args);
 
     this.lastTime = undefined;
+    /**
+     * @type {number[][]}
+     */
     this.points = [];
     this.canvas = undefined;
     this.ctx = undefined;
@@ -98,6 +101,10 @@ export class Cube3dView extends AbstractView {
     }
   }
 
+  /**
+   * @param {number} x
+   * @param {number} y
+   */
   trackMaxAndMin(x, y) {
     if (this.MODEL_MAX_X == undefined || x > this.MODEL_MAX_X) {
       this.MODEL_MAX_X = x;
@@ -113,6 +120,9 @@ export class Cube3dView extends AbstractView {
     }
   }
 
+  /**
+   * @param {number} time
+   */
   render(time) {
 
     if (this.lastTime == undefined) {
@@ -135,6 +145,10 @@ export class Cube3dView extends AbstractView {
     this.animationFrameId = requestAnimationFrame(this.render.bind(this));
   }
 
+  /**
+   * @param {any[]} point
+   * @param {number} theta
+   */
   rotateY(point, theta) {
     var x = point[0];
     var y = point[1];
@@ -147,6 +161,10 @@ export class Cube3dView extends AbstractView {
     ]);
   }
 
+  /**
+   * @param {any[]} point
+   * @param {number} theta
+   */
   rotateX(point, theta) {
     var x = point[0], y = point[1], z = point[2];
 
@@ -157,6 +175,10 @@ export class Cube3dView extends AbstractView {
     ]);
   }
 
+  /**
+   * @param {any[]} point
+   * @param {number} theta
+   */
   rotateZ(point, theta) {
     var x = point[0], y = point[1], z = point[2];
 
@@ -167,6 +189,9 @@ export class Cube3dView extends AbstractView {
     ]);
   }
 
+  /**
+   * @param {number[]} point
+   */
   renderPoint(point) {
     var projectedPt = this.project(point);
     var x = projectedPt[0],
@@ -184,18 +209,26 @@ export class Cube3dView extends AbstractView {
     this.ctx.stroke();
   }
 
+  /**
+   * @param {number[]} point
+   */
   project(point) {
     var pPt = this.perspectiveProjection(point);
     var x = pPt[0], y = pPt[1];
 
     return (
       [
+        // @ts-ignore
         0.125 * this.W + 0.75 * this.W * (x - this.MODEL_MIN_X) / (this.MODEL_MAX_X - this.MODEL_MIN_X),
+        // @ts-ignore
         0.125 * this.H + 0.75 * this.H * (1 - (y - this.MODEL_MIN_Y) / (this.MODEL_MAX_Y - this.MODEL_MIN_Y))
       ]
     );
   }
 
+  /**
+   * @param {any[]} point
+   */
   perspectiveProjection(point) {
     var x = point[0], y = point[1], z = point[2];
 

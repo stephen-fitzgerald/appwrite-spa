@@ -5,8 +5,8 @@
  * Handles routing for the app
  */
 
-import { getRoutes } from './routes.mjs';
-import { cleanHTML } from '../views/_AbstractView.mjs';
+import { getRoutes } from './routes.js';
+import { cleanHTML } from '../views/_AbstractView.js';
 
 function parseRequestURL() {
     let url = location.hash.slice(1).toLowerCase() || '/';
@@ -23,6 +23,9 @@ const config = {
     sanitizeHTML: false,
 }
 
+/**
+ * @type {{ destroy: () => void; }}
+ */
 let currentPage;
 
 export async function router() {
@@ -36,6 +39,7 @@ export async function router() {
     let parsedURL = (req.resource ? '/' + req.resource : '/') + (req.id ? '/:id' : '') + (req.verb ? '/' + req.verb : '');
 
     // Get the page from our hash of supported routes, or the 404 page 
+    // @ts-ignore
     let page = routes[parsedURL] ? routes[parsedURL] : routes["Error404"];
 
     // console.log(JSON.stringify(request));
