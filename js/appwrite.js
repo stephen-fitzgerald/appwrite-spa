@@ -37,9 +37,9 @@ import {
 
 // const APPWRITE_PROJECT_ID = "6442cef9badf08d71295";
 const APPWRITE_PROJECT_ID = "679f93ce003531e93935";
-// const APPWRITE_API_ENDPOINT = "https://cloud.appwrite.io/v1";
+const APPWRITE_API_ENDPOINT = "https://cloud.appwrite.io/v1";
 // const APPWRITE_API_ENDPOINT = "https://fra.cloud.appwrite.io/v1";
-const APPWRITE_API_ENDPOINT = "https://www.water-depth.ca/v1";
+// const APPWRITE_API_ENDPOINT = "https://www.water-depth.ca/v1";
 
 // cache these for future use
 /**
