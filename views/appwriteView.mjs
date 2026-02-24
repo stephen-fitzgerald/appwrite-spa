@@ -4,8 +4,10 @@
 import { AbstractView } from "./_AbstractView.mjs";
 import { getLoggedInUser, loginWithEmailAndPassword, logOut } from "../js/appwrite.mjs";
 
-const EMAIL = "practicalcomposites@gmail.com";
-const PASSWORD = "hubbards4328~";
+//const EMAIL = "practicalcomposites@gmail.com";
+//const PASSWORD = "hubbards4328~";
+const EMAIL = "pcomp@istar.ca";
+const PASSWORD = "Hubbards4328~";
 
 export class AppwriteView extends AbstractView {
 
@@ -73,30 +75,57 @@ export class AppwriteView extends AbstractView {
   }
 
   async login() {
-    let user = await loginWithEmailAndPassword(EMAIL, PASSWORD);
+    let email = getEmailSafely() || "";
+    const pwrd = getPassword() || "";
+    // let user = await loginWithEmailAndPassword(EMAIL, PASSWORD);
+    let user = await loginWithEmailAndPassword(email, pwrd);
     await this.modelToView(0);
   }
 
   async logout() {
-    let targetObj = {color: "blue"};
-
-    this.proxyObject = new Proxy(targetObj, {
-      get: function (object, name) {
-        if (name == '__proxy__') {
-          return true;
-        }
-        return object[name];
-      },
-      // @ts-ignore
-      set: function (object, name, value) {
-        var old = object[name];
-        object[name] = value;
-      }
-    });
     await logOut();
     await this.modelToView(0);
   }
 
 } //class
 
+function getPassword(){
+  const passwordElement = /** @type {HTMLInputElement | null} */
+    (document.getElementById('aw-password'));
+  const password = passwordElement?.value;
+  return password;
+}
+
+function getEmailSafely() {
+
+  const emailInput = /** @type {HTMLInputElement | null} */
+    (document.getElementById('aw-email'));
+
+  // Check if element exists
+  if (!emailInput) {
+    console.error('Email input not found');
+    return null;
+  }
+
+  // Get and trim the value
+  let email = emailInput.value.trim();
+
+  // Basic email validation
+  if (!email) {
+    alert('Please enter an email address');
+    return null;
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address');
+    return null;
+  }
+
+  // Optional: Convert to lowercase for consistency
+  email = email.toLowerCase();
+
+  return email;
+}
 
