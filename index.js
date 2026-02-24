@@ -17,8 +17,8 @@
  */
 
 // @ts-check
-import { router } from "./js/router.mjs";
-import { addListenerToNavItems, toggleNavPane } from "./js/leftNav.mjs";
+import { router } from "./js/router.js";
+import { addListenerToNavItems, toggleNavPane } from "./js/leftNav.js";
 
 const app = async () => {
 
