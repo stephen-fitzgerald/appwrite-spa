@@ -33,7 +33,7 @@ import {
     Client, CreditCard, Databases, ExecutionMethod, Flag, Functions, Graphql,
     ID, ImageFormat, ImageGravity, Locale, Messaging, OAuthProvider,
     Permission, Query, Role, Storage, Teams
-} from '../lib/appwrite.16.1.0-sdk.js';
+} from '../lib/appwrite.21.5.0-sdk.js'; // from '../lib/appwrite.16.1.0-sdk.js';
 
 // const APPWRITE_PROJECT_ID = "6442cef9badf08d71295";
 const APPWRITE_PROJECT_ID = "679f93ce003531e93935";
