@@ -6,7 +6,8 @@
     These help with autocorrect & jsdoc comments    
 */
 
-/** @typedef {{
+/** 
+ @typedef {{
     $id: string,
     $createdAt: string,
     $updatedAt: string,
@@ -25,8 +26,9 @@
     mfa: boolean,
     prefs: object,
     targets: Array<any>,
-    accessedAt: string
-}} User */
+    accessedAt: string,
+ }} User 
+ */
 
 import {
     Account, AppwriteException, AuthenticationFactor, AuthenticatorType, Avatars, Browser,
@@ -127,16 +129,22 @@ export async function logOut() {
  *
  * @export
  * @async
- * @returns {Promise<User>} User 
+ * @returns {Promise<User | undefined> } User 
  */
 export async function getLoggedInUser() {
     let user;
     try {
         const account = await getAccount();
         user = await account.get();
-    } catch (err) {
-        // No user session found.
-        // console.info("Get logged in user threw an error.");
+    } catch (/** @type {any} */ err) {
+        // Expected when not logged in:
+        // Appwrite typically uses 401 for missing/expired session
+        if (err && (err.code === 401 || err.type === 'general_unauthorized_scope')) {
+            return undefined;
+        }
+        // Unexpected errors worth seeing:
+        console.warn('account.get() failed:', err);
+        return undefined;
     }
     return user;
 }
