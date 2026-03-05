@@ -82,18 +82,19 @@ export async function getAccount() {
  * @returns {Promise<User>} User - the currently logged in user.
  */
 export async function loginWithEmailAndPassword(email, pwd) {
+    let account;
     let user;
     let session;
     let noExistingSession = true;
-    const account = await getAccount();
     try {
+        account = await getAccount();
         user = await account.get();
         noExistingSession = false;
     } catch (err) {
         // No user session found, continue.
     }
 
-    if (noExistingSession) {
+    if (noExistingSession && account != undefined) {
         try {
             session = await account.createEmailPasswordSession(email, pwd);
             user = await account.get();
@@ -129,9 +130,9 @@ export async function logOut() {
  * @returns {Promise<User>} User 
  */
 export async function getLoggedInUser() {
-    const account = await getAccount();
     let user;
     try {
+        const account = await getAccount();
         user = await account.get();
     } catch (err) {
         // No user session found.
