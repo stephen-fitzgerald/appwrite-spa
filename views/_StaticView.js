@@ -15,14 +15,13 @@ export class StaticView extends AbstractView {
   /**
   * @async
   * @param {{ resource: string; id: string; verb: string; }} request 
-  * @returns {Promise<string | undefined>} the html for the view
+  * @returns {Promise<string | NodeList | undefined>} the html for the view
   */
   async buildHTML(request) {
     console.log(request);
     if (this.html == undefined && this.path) {
       let response = await fetch(this.path);
       let html = await response.text();
-      // @ts-ignore
       this.html = cleanHTML(html);
     }
     return this.html;

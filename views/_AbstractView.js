@@ -12,6 +12,7 @@ export class AbstractView {
   */
   constructor(args = {}) {
     this.title = args.title;
+    /** @type {string|NodeList|undefined} */
     this.html = args.html;
     //console.log("Constructor called: " + new.target.name);
   }
@@ -27,7 +28,7 @@ export class AbstractView {
    * 
    * @async
    * @param {{ resource: string; id: string; verb: string; }} request
-   * @returns {Promise<string | undefined>} the html for the view
+   * @returns {Promise<string | NodeList | undefined>} the html for the view
    * @memberof AbstractView
    */
   async buildHTML(request={}) {
@@ -69,10 +70,10 @@ export class AbstractView {
  * Sanitize an HTML string
  * (c) 2021 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {String}          str   The HTML string to sanitize
- * @param  {Boolean}         nodes If true, returns HTML nodes instead of a string
+ * @param  {Boolean}         [nodes] If true, returns HTML nodes instead of a string
  * @return {String|NodeList}       The sanitized string or nodes
  */
-export function cleanHTML(str, nodes) {
+export function cleanHTML(str, nodes=false) {
 	// Convert the string to HTML
 	let html = stringToHTML(str);
 	removeScripts(html);
