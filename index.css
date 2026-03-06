@@ -120,27 +120,21 @@ main {
   padding: var(--dflt-border-radius);
 }
 
-.menu-icon {
-  cursor: pointer;
+header {
+  user-select: none; /* Prevents text selection and I-beam cursor */
+}
+
+header .menu-icon {
   padding: 0.3rem;
+  cursor: pointer;
+}
+
+header img {
+  display: block;
 }
 
 header .menu-icon:hover {
   background-color: var(--header-hilite-clr);
-}
-
-/* Hamburger menu item in header hides/shows nav */
-#hamburger-icon:before,
-#hamburger-icon:after,
-#hamburger-icon div {
-  width: 1.75rem;
-  background: var(--text-clr);
-  content: "";
-  display: block;
-  height: 5px;
-  border-radius: 2px;
-  margin: 3px 0;
-  transition: 0.5s;
 }
 
 /*  input styling for forms */
@@ -174,9 +168,12 @@ select:hover {
 }
 
 .no-select {
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
 
 table {
